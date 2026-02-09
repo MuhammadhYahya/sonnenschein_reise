@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
+/* ================================
+   Design Tokens (from your HTML)
+================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core brand colors */
+  --sand: #F4EDE4;
+  --terracotta: #C85C3F;
+  --deep-teal: #1A4D4D;
+  --gold: #D4A574;
+  --forest: #2C5F4F;
+  --cream: #FFF9F2;
+  --charcoal: #2A2A2A;
+
+  /* Semantic colors */
+  --background: #E6F1E7;
+  --foreground: var(--charcoal);
 }
+
+/* Optional dark mode (ready, but calm & elegant) */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+
+/* ================================
+   Tailwind Theme Bridge (v4)
+================================ */
 
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-sand: var(--sand);
+  --color-terracotta: var(--terracotta);
+  --color-deep-teal: var(--deep-teal);
+  --color-gold: var(--gold);
+  --color-forest: var(--forest);
+  --color-cream: var(--cream);
+  --color-charcoal: var(--charcoal);
+
+  /* Fonts (Next.js font variables) */
+  --font-sans: var(--font-karla);
+  --font-serif: var(--font-cormorant);
+
+  /* Type scale (centralized) */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ================================
+   Base Reset
+================================ */
+
+* {
+  box-sizing: border-box;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ================================
+   Base Typography & Body
+================================ */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground font-sans antialiased;
+  overflow-x: hidden;
+}
+
+/* ================================
+   Hero Styling
+================================ */
+
+.hero-image-arc-organic {
+  border-radius: 55% 45% 60% 40% / 35% 45% 55% 65%;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-image-arc-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 30px 80px -40px rgba(0,0,0,0.5);
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+
+.hero-image-arc:hover {
+  transform: translateY(-6px);
+  transition: 0.4s ease;
+}
+
+
+@media (min-width: 1024px) {
+  .hero-image-arc {
+    border-radius: 30px 30px 70% 70% / 30px 30px 50% 50%;
+  }
 }
