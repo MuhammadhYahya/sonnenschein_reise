@@ -1,9 +1,11 @@
 
-
 import AppShell from "@/components/AppShell";
+import { getHomepageContent } from "@/lib/cms/homepage";
 
-export default function Home() {
+export default async function Home() {
+  const homepageContent = await getHomepageContent();
+
   return (
-    <AppShell />
+    <AppShell homepageContent={homepageContent} />
   );
 }

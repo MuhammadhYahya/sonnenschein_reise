@@ -10,10 +10,15 @@ import Reviews from "@/components/Reviews";
 import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import type { SiteContentSnapshot } from "@/lib/domain/content";
 
 export type Language = "EN" | "DE";
 
-export default function AppShell() {
+type AppShellProps = {
+  homepageContent: SiteContentSnapshot;
+};
+
+export default function AppShell({ homepageContent }: AppShellProps) {
   const [language, setLanguage] = useState<Language>("EN");
 
   const handleSetLanguage = (next: Language) => {
@@ -23,7 +28,7 @@ export default function AppShell() {
   return (
     <>
       <Navigation language={language} onSetLanguage={handleSetLanguage} />
-      <Hero language={language} />
+      <Hero language={language} content={homepageContent.hero} />
       <Experiences language={language} />
       <About language={language} />
       <TourPackages language={language} />
